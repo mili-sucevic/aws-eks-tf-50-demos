@@ -1,0 +1,1 @@
+VPC created on Tue Jan 17 12:50:58 UTC 2023 and VPC ID: vpc-06150b510aeaec49f
