@@ -11,7 +11,7 @@ resource "aws_eks_node_group" "eks_ng_public" {
   instance_types = ["t3.medium"]
 
   remote_access {
-    ec2_ssh_key = "eks-tf-keypair"
+    ec2_ssh_key = "eks-tf-keypair" # If you specify this configuration, but do not specify source_security_group_ids when you create an EKS Node Group port 22 is open to the Internet (0.0.0.0/0).
   }
 
   scaling_config {
