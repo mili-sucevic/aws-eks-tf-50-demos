@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-hello-world-rs
+  labels:
+    environment: dev
+    app: my-hello-world
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-hello-world
+  template:
+    metadata:
+      labels:
+        app: my-hello-world
+    spec:
+      containers:
+      - name: my-hello-world-app
+        image: stacksimplify/kube-helloworld:1.0.0
+        ports:
+        - containerPort: 80
