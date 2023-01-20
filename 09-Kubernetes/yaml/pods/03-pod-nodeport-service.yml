@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: myapp-pod-nodeport-service
+spec:
+  selector:
+    app: myapp
+  type: NodePort
+  ports:
+  - name: http
+    port: 80 # Service Port 
+    targetPort: 80 # Container Port
+    nodePort: 31231 # Node Port
