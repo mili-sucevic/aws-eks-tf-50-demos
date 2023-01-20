@@ -37,10 +37,11 @@ echo "server {
 touch Dockerfile
 echo "FROM nginx:latest
 COPY default.conf /etc/nginx/conf.d/
+RUN apt-get update && apt-get install -y curl && apt-get clean
 CMD [\"nginx\", \"-g\", \"daemon off;\"]" > Dockerfile
 
 # Build the Docker image
-docker build -t milisucevic/kube-front-end-nginx:1.0.0 .
+docker build -t milisucevic/kube-front-end-nginx:2.0.0 .
 
 # Push Docker Image to Docker Hub
-docker push milisucevic/kube-front-end-nginx:1.0.0 
+docker push milisucevic/kube-front-end-nginx:2.0.0 
