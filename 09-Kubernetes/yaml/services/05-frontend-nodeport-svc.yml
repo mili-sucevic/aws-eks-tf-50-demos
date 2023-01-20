@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  frontend-nginxapp-nodeport-service
+  labels: 
+    app: frontend-nginxapp
+    tier: frontend     
+spec:
+  selector:
+    app:  frontend-nginxapp
+  type:  NodePort
+  ports:
+  - name:  http
+    port:  80
+    targetPort:  80
+    nodePort: 31234

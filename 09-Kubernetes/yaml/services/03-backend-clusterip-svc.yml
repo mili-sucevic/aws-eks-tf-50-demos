@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-backend-service
+  labels:
+    app: backend-restapp
+    tier: backend
+spec:
+  selector:
+    app:  backend-restapp
+  # type:  ClusterIP is a default service
+  ports:
+  - name:  http
+    port:  8080 # ClusterIP Service Port
+    targetPort:  8080 # Container Port
+
+# Port 80 is used for HTTP traffic, while port 8080 is used for non-HTTP traffic, such as backend services. 
+# This separation allows for better security and scalability, as frontend and backend services can be deployed and scaled independently.
