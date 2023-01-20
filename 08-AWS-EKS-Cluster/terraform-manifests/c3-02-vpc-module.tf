@@ -1,7 +1,7 @@
 # AWS Availability Zones Datasource
 data "aws_availability_zones" "available" {
   #state = "available"
-  # exclude_names = []
+  exclude_names = ["us-east-1-iah-1a"]
 }
 
 # Create VPC Terraform Module

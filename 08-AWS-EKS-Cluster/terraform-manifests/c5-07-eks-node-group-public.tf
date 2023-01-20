@@ -3,7 +3,7 @@ resource "aws_eks_node_group" "eks_ng_public" {
   node_group_name = "${local.name}-eks-ng-public"
   node_role_arn   = aws_iam_role.eks_nodegroup_role.arn
   subnet_ids      = module.vpc.public_subnets
-  #version				= var.cluster_version #(Optional: Defaults to EKS Cluster Kubernetes version)    
+  version         = var.cluster_version #(Optional: Defaults to EKS Cluster Kubernetes version)    
 
   ami_type       = "AL2_x86_64"
   capacity_type  = "ON_DEMAND"
