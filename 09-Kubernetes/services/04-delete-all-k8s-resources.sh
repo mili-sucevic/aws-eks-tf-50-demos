@@ -17,6 +17,7 @@ echo "Deleting deployments..."
 kubectl delete deployments -n $namespace --all
 
 # Delete all statefulsets
+echo "Deleting statefulsets..."
 kubectl delete statefulsets -n $namespace --all
 
 # Delete all daemonsets
