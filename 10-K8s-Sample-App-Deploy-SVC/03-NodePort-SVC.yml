@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  myapp1-nodeport-service
+spec:
+  selector: # Important so the service know what pod (myapp1) to send the traffic
+    app:  myapp1
+  type:  NodePort
+  ports:
+  - name:  http
+    port:  80 # Service Port
+    targetPort:  80 # Container Port
+    nodePort: 31280 # Node Port
