@@ -1,3 +1,4 @@
+# S3 Buckets
 resource "aws_s3_bucket" "dev-bucket" {
   bucket = "ms-terraform-on-aws-eks"
   versioning {
@@ -7,17 +8,29 @@ resource "aws_s3_bucket" "dev-bucket" {
 
 resource "aws_s3_bucket_object" "dev-bucket-sub1" {
   bucket  = aws_s3_bucket.dev-bucket.id
-  key     = "eks-cluster/"
+  key     = "dev/"
   content = ""
 }
 
 resource "aws_s3_bucket_object" "dev-bucket-sub2" {
   bucket  = aws_s3_bucket.dev-bucket.id
-  key     = "app1-k8s/"
+  key     = "/dev/eks-cluster/"
   content = ""
 }
 
+resource "aws_s3_bucket_object" "dev-bucket-sub3" {
+  bucket  = aws_s3_bucket.dev-bucket.id
+  key     = "/dev/app1-k8s/"
+  content = ""
+}
 
+resource "aws_s3_bucket_object" "dev-bucket-sub4" {
+  bucket  = aws_s3_bucket.dev-bucket.id
+  key     = "/dev/eks-irsa-demo/"
+  content = ""
+}
+
+# DynamoDB
 resource "aws_dynamodb_table" "dev-eks-cluster" {
   name           = "dev-eks-cluster"
   read_capacity  = 5
@@ -42,3 +55,14 @@ resource "aws_dynamodb_table" "dev-app1-k8s" {
   }
 }
 
+resource "aws_dynamodb_table" "dev-eks-irsa-demo" {
+  name           = "dev-eks-irsa-demo"
+  read_capacity  = 5
+  write_capacity = 5
+
+  hash_key = "LockID"
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
