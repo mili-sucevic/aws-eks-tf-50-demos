@@ -11,8 +11,8 @@ resource "kubernetes_service_v1" "np_service" {
     }
     port {
       name        = "http"
-      port        = 80 # Service Port
-      target_port = 80 # Container Port
+      port        = 80    # Service Port
+      target_port = 80    # Container Port
       node_port   = 31280 # Node Port 
     }
 
