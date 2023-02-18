@@ -1,6 +1,6 @@
 # S3 Buckets
 resource "aws_s3_bucket" "dev-bucket" {
-  bucket = "ms-terraform-on-aws-eks"
+  bucket = "msq-terraform-on-aws-eks"
   versioning {
     enabled = true
   }
