@@ -1,9 +1,9 @@
 # Resource: AWS IAM User - Basic User (No AWSConsole Access for AWS Services)
 resource "aws_iam_user" "basic_user" {
-  name = "${local.name}-eks-admin-02"  
-  path = "/"
+  name          = "${local.name}-eks-admin-02"
+  path          = "/"
   force_destroy = true
-  tags = local.common_tags
+  tags          = local.common_tags
 }
 
 # Resource: AWS IAM User Policy - EKS Full Access
