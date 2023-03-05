@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app1-nginx-loadbalancer-service
+  labels:
+    app: app1-nginx
+  annotations:
+#Important Note:  Need to add health check path annotations in service level if we are planning to use multiple targets in a load balancer    
+    alb.ingress.kubernetes.io/healthcheck-path: /app1/index.html
+    external-dns.alpha.kubernetes.io/hostname: ms-demo-101.cmcloudlab837.info
+spec:
+  selector:
+    app:  app1-nginx
+  type:  LoadBalancer
+  ports:
+    - port:  80
+      targetPort:  80
