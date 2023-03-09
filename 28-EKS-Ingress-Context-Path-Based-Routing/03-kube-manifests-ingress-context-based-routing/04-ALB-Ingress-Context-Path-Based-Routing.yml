@@ -6,9 +6,11 @@ metadata:
   annotations:
     # Load Balancer Name
     alb.ingress.kubernetes.io/load-balancer-name: ingress-cpr
+
     # Ingress Core Settings
     #kubernetes.io/ingress.class: "alb" (OLD INGRESS CLASS NOTATION - STILL WORKS BUT RECOMMENDED TO USE IngressClass Resource)
     alb.ingress.kubernetes.io/scheme: internet-facing
+
     # Health Check Settings
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP 
     alb.ingress.kubernetes.io/healthcheck-port: traffic-port
@@ -22,7 +24,7 @@ spec:
   ingressClassName: my-aws-ingress-class   # Ingress Class 
   defaultBackend:
     service:
-      name: app3-nginx-nodeport-service
+      name: app-03-nginx-nodeport-service
       port:
         number: 80                            
   rules:
@@ -32,28 +34,26 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: app1-nginx-nodeport-service
+                name: app-01-nginx-nodeport-service
                 port: 
                   number: 80
           - path: /app2
             pathType: Prefix
             backend:
               service:
-                name: app2-nginx-nodeport-service
+                name: app-02-nginx-nodeport-service
                 port: 
                   number: 80
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: app3-nginx-nodeport-service
+                name: app-03-nginx-nodeport-service
                 port: 
-                  number: 80                     
-             
+                  number: 80
 
-# Important Note-1: In path based routing order is very important, if we are going to use  "/*" (Root Context), try to use it at the end of all rules.                                        
-                        
-# 1. If  "spec.ingressClassName: my-aws-ingress-class" not specified, will reference default ingress class on this kubernetes cluster
-# 2. Default Ingress class is nothing but for which ingress class we have the annotation `ingressclass.kubernetes.io/is-default-class: "true"`
-      
-    
+# Please note that in path-based routing, the order of rules is crucial. If using "/*" (root context), it is advisable to place it at the end of all the rules.
+
+# Two important points to keep in mind:
+# If "spec.ingressClassName: my-aws-ingress-class" is not specified, the default ingress class of the Kubernetes cluster will be used.
+# The default ingress class is the one with the annotation ingressclass.kubernetes.io/is-default-class: "true".

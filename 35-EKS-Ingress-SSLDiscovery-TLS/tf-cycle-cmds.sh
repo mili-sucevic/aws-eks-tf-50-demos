@@ -4,7 +4,7 @@
 key_pair_name="eks-tf-keypair"
 
 # Define the key pair file path
-file_path="/home/cloud_user/github/aws-eks-tf-50-demos/34-EKS-Ingress-SSL-Discovery-Host/01-ekscluster-tf-manifests/private-key/$key_pair_name.pem"
+file_path="/home/cloud_user/github/aws-eks-tf-50-demos/35-EKS-Ingress-SSLDiscovery-TLS/01-ekscluster-tf-manifests/private-key/$key_pair_name.pem"
 
 if [ -f "$file_path" ]; then
   rm "$file_path"
