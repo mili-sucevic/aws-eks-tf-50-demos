@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-03-nginx-deployment
+  labels:
+    app: app-03-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-03-nginx
+  template:
+    metadata:
+      labels:
+        app: app-03-nginx
+    spec:
+      containers:
+        - name: app-03-nginx
+          image: headinthecloudsonline/nginx-app-03:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
